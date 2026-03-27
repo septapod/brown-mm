@@ -23,6 +23,12 @@ After the audit, Claude reports the original error (confirmed fixed), any additi
 
 The skill works on any output type: emails, code, documents, research, slide decks, data, plans.
 
+## Getting the most out of it
+
+Brown M&M's fact verification pass works by checking claims in the output against source material in your conversation. The more context Claude has, the more the skill can verify.
+
+In practice, the skill works best when you've given Claude reference material to work from: meeting notes, source data, a brief, a spec, prior conversation context. If Claude generated an output from a vague prompt with no source material, the fact verification pass has nothing to check against. The skill still runs internal consistency and logic passes, but the full four-pass audit shines when there's a ground truth to compare against.
+
 ## Installation
 
 ### Prerequisites
@@ -59,17 +65,7 @@ You: "That timezone is wrong, it should be EST. Brown M&M this."
 
 Claude fixes the timezone, then audits the entire email. Names, dates, subject line, recipient match, tone. Everything gets checked against the source material you provided.
 
-### Scenario 2: Incorrect variable in generated code
-
-Claude generates a function that references `user.email` when it should be `user.emailAddress`.
-
-```
-You: "That property name is wrong. What else did you get wrong?"
-```
-
-Claude fixes the property name, then walks through the full code output. Imports, types, logic, edge cases, hardcoded values. The four-pass structure catches different categories of error at each stage.
-
-### Scenario 3: Bad number in a report
+### Scenario 2: Bad number in a report
 
 Claude produces an analysis that says "revenue grew 12%" when the source data shows 8%.
 
@@ -78,6 +74,16 @@ You: "The growth number is wrong, it's 8%, not 12%. Audit the rest."
 ```
 
 Claude fixes the percentage and re-reads every number, claim, and comparison in the report against the source data. Anything Claude cannot verify gets flagged explicitly.
+
+### Scenario 3: Incorrect variable in generated code
+
+Claude generates a function that references `user.email` when it should be `user.emailAddress`.
+
+```
+You: "That property name is wrong. What else did you get wrong?"
+```
+
+Claude fixes the property name, then walks through the full code output. Imports, types, logic, edge cases, hardcoded values. The four-pass structure catches different categories of error at each stage.
 
 ## When to use Brown M&M vs. a dedicated debugging tool
 
