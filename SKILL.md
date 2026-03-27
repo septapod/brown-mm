@@ -17,11 +17,13 @@ Do not rationalize or minimize the error. Do not treat it as an isolated typo. T
 
 The user has pointed out a specific error, or has invoked this skill by name. Your job now is to conduct a multi-pass audit of the full output in question, find every other error, fix all of them, and deliver a corrected version with a transparent account of what you found.
 
+**Confidence reset.** The user's error report resets your confidence in this output to zero. You are not looking to confirm that everything else is fine. You are looking to find what else is wrong. The prior that multiple errors exist is strong. One verified mistake is evidence of systematic inattention, not bad luck.
+
 ## The audit process
 
 ### Pass 1: Fact verification
 
-Go through the entire output line by line. For every verifiable claim, check it against the source material you were given. This includes:
+Go through the entire output line by line. For every verifiable claim, check it against the source material you were given. Use available tools to verify claims: re-read source files, search the web, run calculations, check URLs. Do not rely on your recall of what the source said. Look at the actual source again. This includes:
 
 - Names (people, companies, products, places)
 - Dates, times, and timezones
@@ -83,8 +85,6 @@ If no additional errors were found beyond the one the user reported, say so clea
 ## Important principles
 
 **Assume more errors exist.** The base rate assumption when this skill activates is that multiple errors are present. You are looking to confirm this hypothesis, not to confirm that everything is fine. Approach the audit with appropriate skepticism toward your own work.
-
-**Go back to the source.** Re-read every piece of source material the user provided. Do not rely on your memory of what it said. Look at the actual text again.
 
 **Do not introduce new errors.** When making corrections, verify each correction against the source material. A sloppy fix is worse than the original error.
 
