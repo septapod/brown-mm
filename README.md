@@ -4,22 +4,22 @@ A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill that trigg
 
 ## The Origin Story
 
-In 1982, Van Halen's concert rider included a now-famous clause: a bowl of M&Ms backstage, with every brown one removed. This was not rock-star vanity. Van Halen's stage setup was complex and heavy enough to damage floors or collapse stages if the venue did not follow the technical specifications exactly. The brown M&M clause was buried deep in the rider. If the band arrived and found brown M&Ms in the bowl, they knew the venue had skimmed the contract. That meant the structural and electrical specs might have been skimmed too.
+In 1982, Van Halen's concert rider included a now-famous clause: a bowl of M&Ms backstage, with every brown one removed. Not rock-star vanity. Van Halen's stage setup was complex and heavy enough to damage floors or collapse stages if the venue cut corners on the technical specs. If the band arrived and found brown M&Ms in the bowl, they knew the venue had skimmed the contract, which meant the venue might have skimmed the structural and electrical specs too.
 
 One small, easy-to-verify failure became a reliable diagnostic for larger, harder-to-find failures.
 
 ## What This Skill Does
 
-When you find a mistake in Claude's output (a wrong timezone, a misspelled name, an incorrect number, a broken reference), that mistake is a brown M&M. It tells you the overall attention to detail was insufficient, and other errors probably exist.
+When you find a mistake in Claude's output (a wrong timezone, a misspelled name, an incorrect number, a broken reference), that mistake is a brown M&M. The error tells you the overall attention to detail was insufficient, and other errors probably exist.
 
 This skill runs a structured four-pass audit:
 
-1. **Fact verification** - Checks every verifiable claim against source material (names, dates, numbers, URLs, quotes)
-2. **Internal consistency** - Looks for contradictions within the output (different spellings, mismatched numbers, tone shifts)
-3. **Logical and structural review** - Evaluates whether the output actually accomplishes what was asked, and whether the logic holds
-4. **Fresh-eyes re-read** - One final pass reading as if seeing the output for the first time
+1. Fact verification - checks every verifiable claim against source material (names, dates, numbers, URLs, quotes)
+2. Internal consistency - looks for contradictions within the output (different spellings, mismatched numbers, tone shifts)
+3. Logical and structural review - evaluates whether the output accomplishes what was asked, and whether the logic holds
+4. Fresh-eyes re-read - one final pass reading as if seeing the output for the first time
 
-After the audit, Claude reports: the original error (confirmed fixed), any additional errors found (with which pass caught them), items that could not be verified, and a corrected version of the full output.
+After the audit, Claude reports the original error (confirmed fixed), any additional errors found (with which pass caught them), items Claude could not verify against the source material, and a corrected version of the full output.
 
 The skill works on any output type: emails, code, documents, research, slide decks, data, plans.
 
@@ -57,7 +57,7 @@ You ask Claude to draft an email referencing a meeting on Tuesday at 2pm EST. Cl
 You: "That timezone is wrong, it should be EST. Brown M&M this."
 ```
 
-Claude fixes the timezone, then audits the entire email: Are the names right? Is the date correct? Does the subject line match the content? Is the tone appropriate for the recipient?
+Claude fixes the timezone, then audits the entire email. Names, dates, subject line, recipient match, tone. Everything gets checked against the source material you provided.
 
 ### Scenario 2: Incorrect variable in generated code
 
@@ -67,21 +67,21 @@ Claude generates a function that references `user.email` when it should be `user
 You: "That property name is wrong. What else did you get wrong?"
 ```
 
-Claude fixes the property name, then audits the full code output: Do all imports resolve? Are types consistent? Does the logic handle edge cases? Are there other hardcoded values that might be wrong?
+Claude fixes the property name, then walks through the full code output. Imports, types, logic, edge cases, hardcoded values. The four-pass structure catches different categories of error at each stage.
 
 ### Scenario 3: Bad number in a report
 
 Claude produces an analysis that says "revenue grew 12%" when the source data shows 8%.
 
 ```
-You: "The growth number is wrong — it's 8%, not 12%. Audit the rest."
+You: "The growth number is wrong, it's 8%, not 12%. Audit the rest."
 ```
 
-Claude fixes the percentage, then checks every other number, percentage, and claim in the report against the source material. Flags anything it cannot verify.
+Claude fixes the percentage and re-reads every number, claim, and comparison in the report against the source data. Anything Claude cannot verify gets flagged explicitly.
 
 ## Status
 
-This skill is actively being iterated on. The core four-pass audit structure is stable, but the trigger conditions and reporting format may evolve based on real-world usage.
+The core four-pass audit structure is stable. Trigger conditions and reporting format may evolve based on real-world usage. Feedback and contributions welcome.
 
 ## License
 
