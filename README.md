@@ -14,10 +14,10 @@ When you find a mistake in Claude's output (a wrong timezone, a misspelled name,
 
 This skill runs a structured four-pass audit:
 
-1. Fact verification - checks every verifiable claim against source material (names, dates, numbers, URLs, quotes)
-2. Internal consistency - looks for contradictions within the output (different spellings, mismatched numbers, tone shifts)
-3. Logical and structural review - evaluates whether the output accomplishes what was asked, and whether the logic holds
-4. Fresh-eyes re-read - one final pass reading as if seeing the output for the first time
+1. **Fact verification** - checks every verifiable claim against source material (names, dates, numbers, URLs, quotes)
+2. **Internal consistency** - looks for contradictions within the output (different spellings, mismatched numbers, tone shifts)
+3. **Logical and structural review** - evaluates whether the output accomplishes what was asked, and whether the logic holds
+4. **Fresh-eyes re-read** - one final pass reading as if seeing the output for the first time
 
 After the audit, Claude reports the original error (confirmed fixed), any additional errors found (with which pass caught them), items Claude could not verify against the source material, and a corrected version of the full output.
 
