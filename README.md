@@ -79,6 +79,19 @@ You: "The growth number is wrong, it's 8%, not 12%. Audit the rest."
 
 Claude fixes the percentage and re-reads every number, claim, and comparison in the report against the source data. Anything Claude cannot verify gets flagged explicitly.
 
+## When to use Brown M&M vs. a dedicated debugging tool
+
+Brown M&M is a generalist. You spot one error in any output (an email, a report, a plan, a piece of code) and the skill audits the whole thing. For most AI-generated content, where the failure mode is scattered inaccuracies across an output, Brown M&M is the right tool.
+
+For code specifically, more specialized tools exist. If you find a logic bug and need root cause analysis, stack tracing, and structured repair, reach for a dedicated debugging skill instead. Brown M&M catches surface errors across an entire output (wrong variable names, mismatched imports, hardcoded values that don't match the spec). Debugging tools go deeper on a single defect.
+
+Some good ones:
+
+- [compound-engineering](https://github.com/EveryInc/compound-engineering-plugin) by Every - 13 skills covering the full development lifecycle, including `ce-review` (12 parallel review agents) and `systematic-debugging` (structured root cause analysis)
+- [superpowers](https://github.com/obra/superpowers) by Jesse Vincent - agentic development framework with structured code review, TDD enforcement, and severity-gated issue reporting
+
+Brown M&M and these tools solve different problems. Use Brown M&M when you find a small error and want confidence that nothing else is wrong. Use debugging tools when you find a real bug and need to understand why.
+
 ## Status
 
 The core four-pass audit structure is stable. Trigger conditions and reporting format may evolve based on real-world usage. Feedback and contributions welcome.
