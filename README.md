@@ -4,7 +4,7 @@ A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill that trigg
 
 ## The Origin Story
 
-In 1982, Van Halen's concert rider included a now-famous clause: a bowl of M&Ms backstage, with every brown one removed. Not rock-star vanity. Van Halen's stage setup was complex and heavy enough to damage floors or collapse stages if the venue cut corners on the technical specs. If the band arrived and found brown M&Ms in the bowl, they knew the venue had skimmed the contract, which meant the venue might have skimmed the structural and electrical specs too.
+In 1982, Van Halen's concert rider included a now-famous clause: a bowl of M&Ms backstage, with every brown one removed. Not rock-star vanity. Van Halen's stage setup was complex and heavy enough to damage floors or overload stages if the venue cut corners on the technical specs. If the band arrived and found brown M&Ms in the bowl, they knew the venue had skimmed the contract, which meant the venue might have skimmed the structural and electrical specs too.
 
 One small, easy-to-verify failure became a reliable diagnostic for larger, harder-to-find failures.
 
