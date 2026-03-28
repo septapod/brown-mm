@@ -98,7 +98,7 @@ Some good ones:
 - [compound-engineering](https://github.com/EveryInc/compound-engineering-plugin) by Every - 13 skills covering the full development lifecycle, including `ce-review` (12 parallel review agents) and `systematic-debugging` (structured root cause analysis)
 - [superpowers](https://github.com/obra/superpowers) by Jesse Vincent - agentic development framework with structured code review, TDD enforcement, and severity-gated issue reporting
 
-Brown M&M and these tools solve different problems. I use Brown M&M when I find a small error and want confidence that nothing else is wrong. Use debugging tools when you find a real bug and need to understand why.
+Brown M&M and these tools solve different problems. I use Brown M&M when I find a small error and want confidence that nothing else is wrong. I use debugging tools when I find a real bug and need to understand why.
 
 ## Status
 
