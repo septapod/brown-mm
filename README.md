@@ -1,5 +1,7 @@
 # Brown M&M
 
+![Brown M&M](brown-mm.png)
+
 A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill that triggers a thorough multi-pass audit of any output when you spot a single error.
 
 ## The Origin Story
