@@ -110,11 +110,9 @@ Brown M&M and these tools solve different problems. I use Brown M&M when I find 
 
 ## Models
 
-I tested this version on a small model (Claude Haiku 5.5) and a large one (Claude Opus 5.5), on an email, a long report, and a Python function, each with planted errors. Both models found the planted errors in the documents and the clear bugs in the code.
+I tested this version on Haiku 5.5 and Opus 5.5. Both caught the errors I planted.
 
-I usually run it on Opus 5.5 or a model in that range, in Claude Code and in Codex. The reason is practical. I run it in the middle of a project, in the conversation that holds the source material, and that is the model I have open. The audit needs those sources, so it belongs where they are.
-
-One difference showed up in testing. Where a spec could be read two ways, the larger model made the call and said so. The smaller model stopped and asked. Both are reasonable, and it is worth knowing which one you will get.
+I tend to run it on Opus 5.5 or something similar, in Claude Code and Codex. That's what I have open when I spot a mistake.
 
 ## Status
 
