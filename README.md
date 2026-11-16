@@ -14,22 +14,30 @@ One small, easy-to-verify failure became a reliable diagnostic for larger, harde
 
 When you find a mistake in Claude's output (a wrong timezone, a misspelled name, an incorrect number, a broken reference), that mistake is a brown M&M. The error tells you the overall attention to detail was insufficient, and other errors probably exist.
 
-This skill runs a structured four-pass audit:
+This skill runs a structured audit:
 
-1. **Fact verification** - checks every verifiable claim against source material (names, dates, numbers, URLs, quotes)
-2. **Internal consistency** - looks for contradictions within the output (different spellings, mismatched numbers, tone shifts)
-3. **Logical and structural review** - evaluates whether the output accomplishes what was asked, and whether the logic holds
-4. **Fresh-eyes re-read** - one final pass reading as if seeing the output for the first time
+1. **The error's own class first** - a wrong timezone means every time, date, and weekday is compared with the source before anything else. Siblings of the error you found are the ones most likely to have survived.
+2. **Facts** - every claim that has a source is compared with that source again, using tools: re-reading the file, recomputing the number, fetching the link.
+3. **Consistency** - the output is read against itself for contradictions (different spellings, numbers that disagree, a duration that does not match its start and end times).
+4. **Logic** - whether each conclusion, ranking, and stated cause follows from the figures.
+5. **A reader who has not seen the reasoning** - a fresh subagent where one is available, since a re-read in the same conversation shares the blind spots that produced the error.
 
-After the audit, Claude reports the original error (confirmed fixed), any additional errors found (with which pass caught them), items Claude could not verify against the source material, and a corrected version of the full output.
+One rule holds the audit together: a claim counts as verified only when Claude can show the source line or the tool result. Memory of the source is the thing that failed the first time.
+
+After the audit, Claude reports:
+
+- the original error, its fix, and the other errors it found, each with the source line that proves it
+- statements that nothing in the source supports, and anything it could not reach
+- a proof list: every claim it compared, beside its source, marked match, mismatch, or no source
+- the corrected output
 
 The skill works on any output type: emails, code, documents, research, slide decks, data, plans.
 
 ## Getting the most out of it
 
-Brown M&M's fact verification pass works by checking claims in the output against source material in your conversation. The more context Claude has, the more the skill can verify.
+Brown M&M's fact pass works by checking claims in the output against source material in your conversation. The more context Claude has, the more the skill can verify.
 
-In practice, the skill works best when you've given Claude reference material to work from: meeting notes, source data, a brief, a spec, prior conversation context. If Claude generated an output from a vague prompt with no source material, the fact verification pass has nothing to check against. The skill still runs internal consistency and logic passes, but the full four-pass audit shines when there's a ground truth to compare against.
+In practice, the skill works best when you've given Claude reference material to work from: meeting notes, source data, a brief, a spec, prior conversation context. If Claude generated an output from a vague prompt with no source material, the fact pass has nothing to compare against. The skill still runs the consistency and logic passes, and it lists every unsupported statement as "no source" so you can see how much of the output rests on nothing. The full audit works best when there is source material to compare against.
 
 ## Installation
 
@@ -85,7 +93,7 @@ Claude generates a function that references `user.email` when it should be `user
 You: "That property name is wrong. What else did you get wrong?"
 ```
 
-Claude fixes the property name, then walks through the full code output. Imports, types, logic, edge cases, hardcoded values. The four-pass structure catches different categories of error at each stage.
+Claude fixes the property name, then walks through the full code output. Imports, types, logic, edge cases, hardcoded values. Each pass catches a different kind of error.
 
 ## When to use Brown M&M vs. a dedicated debugging tool
 
@@ -100,9 +108,17 @@ Some good ones:
 
 Brown M&M and these tools solve different problems. I use Brown M&M when I find a small error and want confidence that nothing else is wrong. I use debugging tools when I find a real bug and need to understand why.
 
+## Models
+
+I tested this version on a small model (Claude Haiku 5.5) and a large one (Claude Opus 5.5), on an email, a long report, and a Python function, each with planted errors. Both models found the planted errors in the documents and the clear bugs in the code.
+
+I usually run it on Opus 5.5 or a model in that range, in Claude Code and in Codex. The reason is practical. I run it in the middle of a project, in the conversation that holds the source material, and that is the model I have open. The audit needs those sources, so it belongs where they are.
+
+One difference showed up in testing. Where a spec could be read two ways, the larger model made the call and said so. The smaller model stopped and asked. Both are reasonable, and it is worth knowing which one you will get.
+
 ## Status
 
-The core four-pass audit structure is stable. Trigger conditions and reporting format may evolve based on real-world usage. Feedback and contributions welcome.
+This is the second version of the skill. The first ran four passes and reported what it found. This one adds the sweep of the error's own class, the rule that a claim counts as verified only with its source shown, and the proof list. Feedback and contributions welcome.
 
 ## License
 
